@@ -185,7 +185,9 @@ NSString * __nullable DDExtractFileNameWithoutExtension(const char *filePath, BO
  *
  * For example: DDLogWarn(@"%@: Unable to find thingy", THIS_FILE) -> @"MyViewController: Unable to find thingy"
  **/
-#define THIS_FILE         (DDExtractFileNameWithoutExtension(__FILE__, NO))
+#ifndef THIS_FILE
+    #define THIS_FILE         (DDExtractFileNameWithoutExtension(__FILE__, NO))
+#endif
 
 /**
  * The THIS_METHOD macro gives you the name of the current objective-c method.
@@ -195,7 +197,9 @@ NSString * __nullable DDExtractFileNameWithoutExtension(const char *filePath, BO
  * Note: This does NOT work in straight C functions (non objective-c).
  * Instead you should use the predefined __FUNCTION__ macro.
  **/
-#define THIS_METHOD       NSStringFromSelector(_cmd)
+#ifndef THIS_METHOD
+    #define THIS_METHOD       NSStringFromSelector(_cmd)
+#endif
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -79,11 +79,15 @@
  *
  * We also define shorthand versions for asynchronous and synchronous logging.
  **/
-#define LOG_MAYBE(async, lvl, flg, ctx, tag, fnct, frmt, ...) \
+#ifndef LOG_MAYBE
+    #define LOG_MAYBE(async, lvl, flg, ctx, tag, fnct, frmt, ...) \
         do { if(lvl & flg) LOG_MACRO(async, lvl, flg, ctx, tag, fnct, frmt, ##__VA_ARGS__); } while(0)
+#endif
 
-#define LOG_MAYBE_TO_DDLOG(ddlog, async, lvl, flg, ctx, tag, fnct, frmt, ...) \
+#ifndef LOG_MAYBE_TO_DDLOG
+    #define LOG_MAYBE_TO_DDLOG(ddlog, async, lvl, flg, ctx, tag, fnct, frmt, ...) \
         do { if(lvl & flg) LOG_MACRO_TO_DDLOG(ddlog, async, lvl, flg, ctx, tag, fnct, frmt, ##__VA_ARGS__); } while(0)
+#endif
 
 /**
  * Ready to use log macros with no context or tag.
